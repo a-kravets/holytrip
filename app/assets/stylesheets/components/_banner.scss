@@ -1,0 +1,231 @@
+.banner{
+  height: 85vh;
+  width: 100%;
+// background-image: linear-gradient( 179.6deg,  rgba(64,63,111,1) 12.3%, rgba(69,181,170,1) 90.8% );  text-shadow: 0 0 21px rgba(250,250,250,0.7);
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(https://www.universoviajero.com/wp-content/uploads/2018/03/PlanningRoadTrip2_web.jpg);
+  background-size: cover;
+  }
+
+
+.btn-banner{
+  border: 0;
+        display: block !important;
+    width: 20%;
+    margin: 0 auto;
+    height: 68px;
+    position: relative;
+    background-color: #00D1AC !important;
+    opacity: 1 !important;
+        top: -34px;
+  color: #fff !important;
+      font-size: xx-large !important;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+text-shadow: 0 0 21px rgba(250,250,250,0.7);
+border-radius: 5px !important;
+}
+.banner-main-header{
+position: absolute;
+left: 0%;
+right: 0%;
+top: 20%;
+bottom: 0%;
+
+
+font-style: normal;
+font-weight: normal;
+font-size: 218px;
+line-height: normal;
+text-align: center;
+
+color: #FFFFFF;
+}
+.main-header {
+font-style: normal;
+font-weight: normal;
+font-size: 218px;
+line-height: normal;
+text-align: center;
+
+color: #FFFFFF;
+}
+#typed{
+position: absolute;
+left: 0%;
+right: 0%;
+bottom: 30%;
+// bottom: 0%;
+
+
+font-style: normal;
+font-weight: normal;
+font-size: 28px;
+line-height: normal;
+text-align: center;
+
+color: #FFFFFF;
+}
+.secondary-header{
+
+
+width: 100%;
+
+font-style: normal;
+font-weight: normal;
+font-size: 118px;
+line-height: normal;
+text-align: center;
+margin: 0 auto;
+color: #00D1AC;
+}
+.secondary-header h3{
+      font-size: 2.75rem;
+}
+.home-content{
+  display: flex;
+
+}
+.content{
+  padding-left: 3.3%;
+  width: 45%;
+  margin-top: 28px;
+}
+
+.content-text{
+font-family: 'Montserrat', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 2.45rem;
+line-height: normal;
+// text-align: justify;
+margin-bottom: 1em;
+}
+.content p{
+margin-top: 36px;
+font-family: 'Montserrat', sans-serif;
+font-style: normal;
+font-weight: 300;
+font-size: 32px;
+line-height: normal;
+// text-indent: 10px;
+}
+.content-img{
+  width: 65%;
+
+}
+
+.home-content-up {
+    margin: 88px 20px;
+}
+
+.home-content-down {
+  margin: 120px 20px;
+}
+.home-content-up img{
+  width: 80%;
+  height: 22em;
+
+  position: relative;
+  right: -16%;
+  box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.25);
+}
+.home-content-down img{
+  width: 80%;
+  height: 22em;
+  position: relative;
+  right: -5%;
+  box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.25);
+}
+
+
+@media screen and (max-width: 500px) {
+  .main-header {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 70px;
+  line-height: normal;
+  text-align: center;
+  color: #FFFFFF;
+  }
+  .banner{
+  height: 65vh;
+  }
+  #typed{
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  bottom: 50%;
+  // bottom: 0%;
+
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: normal;
+  text-align: center;
+
+  color: #FFFFFF;
+  }
+  .btn-banner{
+  border: 0;
+        display: block !important;
+    width: 35%;
+    margin: 0 auto;
+    height: 45px;
+    position: relative;
+    background-color: #00D1AC !important;
+    opacity: 1 !important;
+        top: -34px;
+  color: #fff !important;
+      font-size: large !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0 21px rgba(250,250,250,0.7);
+  border-radius: 5px !important;
+  }
+  .secondary-header h3{
+    font-size: 2rem;
+  }
+  .content-text{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: normal;
+    // text-align: justify;
+  }
+  .content p{
+    margin-top: 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: normal;
+    // text-indent: 10px;
+  }
+  .home-content{
+
+  height: 30vh;
+  display: flex;
+  }
+
+  .content-img{
+  width: 50%;
+
+}
+  .home-content-up img{
+    width: 80%;
+    position: relative;
+    right: -16%;
+    box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.25);
+  }
+  .home-content-down img{
+    width: 80%;
+    position: relative;
+    right: -5%;
+    box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.25);
+  }
+  .footer-copyright {
+    // visibility:hidden;
+    display: none;
+    // font-size: 8px;
+  }
+}

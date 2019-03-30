@@ -1,0 +1,181 @@
+
+.modal {
+
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 70% ;
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, .3);
+    padding-top: 50px;
+    border-radius: 5px;
+}
+
+.modal-container h1 {
+  font-size: 34px;
+  margin-bottom: 32px;
+  margin-top: 34px;
+
+}
+
+//
+.modal-content {
+  // margin-top: 148px;
+
+  border-radius: 5px !important;
+  border: none !important;
+  transform: scale(0.7, 0.7);
+    background-color: rgba(0, 0, 0, .3);
+    margin: 10% auto 10% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: none;
+    height: 60vh;
+    width: 50% !important; /* Could be more or less, depending on screen size */
+}
+
+
+.modal-content-friends{
+   border-radius: 5px !important;
+  border: none !important;
+  transform: scale(0.7, 0.7);
+    background-color: rgba(0, 0, 0, .3);
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: none;
+    height: 50vh;
+    width: 65% !important;
+}
+#email-ppl{
+  border-radius: 5px;
+  height: 2.75em !important;
+
+}
+
+//
+// .close {
+//     position: relative;
+//     right: 14.4em;
+//     top: 5em !important;
+//     font-size: 30px !important;
+//     font-weight: bold !important;
+//     color: black !important;
+//     opacity: 0.4;
+//     z-index: 1000;
+// }
+
+#new_task{
+  border: none;
+  border-radius: 5px;
+}
+.clearfix {
+    // content: "";
+    // clear: both;
+    display: flex;
+    justify-content: space-between;
+    // margin-top: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+.btn-flat-task-modal{
+  color: white !important;
+    padding: 10px 40px;
+    border-radius: 4px;
+    background-color: #00D1AC !important;
+    transition: background 0.3s ease;
+    /* margin-left: 25%; */
+    /* margin-right: 5%; */
+    /* margin-bottom: 16px; */
+    margin-top: 12px;
+    border: none !important;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+//
+//
+.btn-flat-task-modal{
+  margin: 0 auto 0 0  !important;
+
+}
+.cancelbtn{
+  margin: 0 0 0 auto !important;
+}
+// @media screen and (max-width: 500px) {
+
+//   .modal {
+
+//       display: none; /* Hidden by default */
+//       position: fixed; /* Stay in place */
+//       z-index: 1; /* Sit on top */
+//       left: 0;
+//       top: 0;
+//       width: 100% ;
+//       height: 100%; /* Full height */
+//       overflow: auto; /* Enable scroll if needed */
+//       background-color: rgba(0, 0, 0, .3);
+//       padding-top: 50px;
+//       border-radius: 5px;
+//   }
+
+//   //
+//   .modal-content {
+//     border-radius: 5px !important;
+//     border: none !important;
+//     transform: scale(0.5, 0.5);
+//       background-color: rgba(0, 0, 0, .3);
+//       margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+//       border: none;
+//       height: 50vh;
+//       width: 50vh !important; /* Could be more or less, depending on screen size */
+//       min-width: 450px !important;
+
+//     h1 {
+//       font-size: 20px;
+//     }
+//   }
+//   //
+//   .close {
+//       position: absolute;
+//       right: 35px;
+//       top: 15px;
+//       font-size: 40px;
+//       font-weight: bold;
+//       color: #f1f1f1;
+//   }
+//   #new_task,
+//   #email-ppl {
+//     border: none;
+//     border-radius: 5px;
+//     padding: 20px 50px 20px 50px !important;
+//   }
+//   .clearfix {
+//     // content: "";
+//     // clear: both;
+//     display: flex;
+//     justify-content: space-between;
+//     margin-top: 30px;
+//     margin-left: 0px;
+//     margin-right: 0px;
+//   }
+//   .btn-flat-task-modal {
+//   color: white !important;
+//   padding: 10px 40px !important;
+//   border-radius: 4px;
+//   background-color: #00D1AC !important;
+//   transition: background 0.3s ease;
+//   margin-left: 0px !important;
+//   margin-right: 5%;
+//   margin-bottom: 16px;
+//   margin-top: 12px;
+//   border: none !important;
+//   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+//   }
+//   #task_name {
+//     width: 100% !important;
+//   }
+//   .modal-container {
+//   padding: 20px 50px 20px 50px !important;
+//   }
+//   .close {
+//     display: none;
+//   }
+// }

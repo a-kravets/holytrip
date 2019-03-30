@@ -1,0 +1,200 @@
+// under navbar buttons
+.dash-link a:hover{
+      color: #00D1AC !important;
+}
+
+// task manager
+
+.tasks-manager{
+     height: -webkit-fill-available;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+
+// tasks container
+
+.task{
+  outline: none;
+    width: 25%;
+    // margin: 2px auto;
+    padding: 20px;
+    // height: 46vh;
+    position: relative;
+}
+// task head
+.task-head{
+      opacity: 1;
+    z-index: 1000;
+    position: sticky;
+   height: 50px;
+    width: 100%;
+    background: #3990f7;
+    color: #fff;
+    padding: 14px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.completed-task-head {
+  background-color: #31D1AC !important;
+  h2 {
+    width: 100%;
+  }
+}
+
+.task-head h2{
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0;
+  text-align: center;
+
+}
+// task body
+.task-body{
+  // height: 80%;
+  outline: none;
+
+}
+// task card
+.card-task {
+      border-radius: 4px;
+       margin-top: 1.2vh;
+  // overflow: scroll;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+    // border-bottom: 2px solid #00d0ac;
+}
+.task-content{
+      border-bottom: 0.5px solid #00d0ac;
+
+    margin-bottom: 25px;
+}
+.task-box{
+  width: 75%;
+  padding: 15px;
+
+}
+
+.card-task h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+
+}
+.task-title{
+  font-weight: 100 !important;
+  width: 100%;
+  padding-bottom: 10%;
+  text-align: left;
+}
+.icon{
+    color: rgba(0, 0, 0, .7);
+   font-size: medium;
+    font-weight: 100 !important;
+    top: -50px;
+    width: 0%;
+    float: right;
+    position: relative;
+    left: 25%;
+    text-align: right;
+}
+.dropdown-menu.show{
+  font-family: sans-serif;
+border: none;
+border-radius: 4px;
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+     min-width: max-content !important;
+
+        font-size: smaller;
+            transform: translate3d(0px, 24px, 0px) !important;
+}
+.dropdown-toggle::after{
+  border: none !important;
+}
+.card-task p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  width: 100%;
+  overflow: scroll;
+  padding: 1%;
+  opacity: .4;
+}
+
+
+.card-task .card-task-infos {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-task-infos .card-task-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
+
+
+
+.task-head {
+  display: flex;
+  justify-content:space-between;
+  img {
+      width: 28px;
+      border-radius: 50%;
+      border: 2px solid white;
+  }
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .task-box{
+    width: 97%;
+    padding: 0px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .tasks-manager{
+    height: -webkit-fill-available;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    // justify-content: space-around;
+    flex-direction: column !important;
+    // min-height: 85vh;
+  }
+  .task{
+
+    width: 80%;
+    margin: 2px auto;
+    padding: 20px;
+    height: 30vh;
+    overflow: scroll;
+    position: relative;
+  }
+  .task-head {
+  // display: flex;
+//   justify-content:space-between;
+//   img {
+//       width: 28px;
+//       border-radius: 50%;
+//       border: 2px solid white;
+//   }
+// }
+    margin-top: 10px;
+ }
+ .task-body{
+  // height: 80%;
+  margin-bottom: 15px !important;
+
+  }
+
+}

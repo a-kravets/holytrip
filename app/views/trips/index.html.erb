@@ -1,0 +1,132 @@
+<!-- index.html.erb -->
+
+<!-- navbar -->
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to root_path, class: "navbar-brand" do %>
+<i class="fa fa-map-marked-alt"></i>
+  <% end %>
+
+
+  <h2 class="navbar-dash-title">My Dashboard</h2>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+      <li class="button-create">
+        <%= button_to "Create a Trip", new_trip_path, :method => "get", class: "btn-flat-create" %>
+      </li>
+      <li class="nav-item dropdown">
+      <% if current_user.facebook_picture_url %>
+        <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
+        <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% else %>
+        <%= cl_image_tag current_user.photo, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div class="container"> -->
+
+  <div class="trip-index-container">
+    <div class="trip-card-box">
+      <h2>My Trips</h2>
+      <div class="trip-index-cards">
+        <% @trips.each do |trip| %>
+          <%= link_to trip_tasks_path(trip) do %>
+          <div class="product-card">
+            <div class="product-tumb">
+              <%= cl_image_tag(trip.photo, crop: :fill) %>
+              <%= link_to trip_path(trip), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-times remove-trip"></i>
+              <% end %>
+            </div>
+            <div class="product-details">
+                <h4><%= link_to trip.name, trip_tasks_path(trip) %></h4>
+                <p><%= trip.destination %></p>
+                <div class="product-bottom-details product-price"><ul style="padding-left: 0;">
+                  <% trip.uniq_particpants.each do |participant| %>
+                  <li class="avatar-inline" data-toggle="tooltip" data-placement="bottom" title=<%= participant.user.name if !participant.user.nil?  %>><%= cl_image_tag participant.user.photo, crop: :fill, class: "avatar-tiny" if !participant.user.nil? %></li>
+                  <% end %>
+                </ul>
+              </div>
+         <!--        <div class="product-links">
+                    <a href=""><i class="fa fa-trash-alt"></i></a>
+                    <i class="fal fa-trash-alt"></i>
+                    <a href=""><i class="fa fa-shopping-cart"></i></a>
+                </div> -->
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class="personal-tasks-container">
+      <h2>My Tasks</h2>
+      <div class="task-box-trip">
+      <% content_item = current_user.tasks.order('due_date asc') %>
+      <% content_item.each do |task| %>
+        <%= link_to trip_tasks_path(task.trip) do %>
+        <ul class="personal-task">
+          <li class="personal-task-content">
+            <h4><%= task.name %></h4>
+            <div class="task-name-deadline">
+             <p>
+              <%= task.trip.name %>
+            </p>
+            <p class="deadline-list">
+              <% if task.due_date%>
+             Deadline: <%= task.due_date.to_date.strftime('%m/%d') %>
+              <% end %>
+            </p>
+            </div>
+          </li>
+       </ul>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+    This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+  </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+

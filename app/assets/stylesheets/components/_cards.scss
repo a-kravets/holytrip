@@ -1,0 +1,248 @@
+
+//draggable cards
+
+.draggable-tasks {
+
+}
+
+.droppable-tasks {
+  background-color: white;
+  color: black;
+  padding: 10px;
+}
+
+
+
+
+//cards
+.card-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 240px;
+  margin: 12px 32px;
+  border-radius: 4px;
+}
+
+.card-trip > img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-name {
+  margin: 10px 0px 16px 12px;
+
+}
+
+.card-trip h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.card-trip p {
+  font-size: 10px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card-trip .card-trip-infos {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: black;
+  text-decoration: none;
+
+}
+
+.card-trip-infos .card-trip-user {
+  position: absolute;
+  right: 16px;
+  width: 40px;
+  padding: 0px 12px 0px 12px;
+}
+
+.trip-card-box {
+  flex: 0 55%;
+  h2 {
+    margin-left: 62px;
+    font-size: 24px;
+    margin-top: 12px;
+    margin-bottom: -8px;
+    font-weight: 200;
+    color: #565656;
+  }
+}
+
+.trip-index-cards {
+  display:flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 13px 32px;
+}
+
+.trip-index-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+.personal-tasks-container {
+  flex: 0 45%;
+  padding: 12px 62px 12px 0px;
+  color: #565656;
+    h2 {
+      font-size: 24px;
+      margin-left: -1px;
+    }
+    a {
+      text-decoration: none;
+      color: gray;
+      font-weight: lighter;
+      font-size: 12px
+    }
+}
+
+
+// .container {
+
+// }
+
+
+
+.personal-task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
+  list-style-type: none;
+  border-radius: 4px;
+  height: 74px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  color: gray;
+  font-weight: lighter;
+  font-size: 12px
+}
+
+.personal-task-content h4 {
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  text-transform: uppercase;
+  color: #565656;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.personal-task:hover {
+  h4 {
+    color: #00d1af;
+    }
+  }
+
+.personal-task .personal-tasks-container {
+
+  flex-grow: 1;
+  padding: 0 24px;
+  text-decoration: none;
+  color: #363636;
+
+}
+
+.personal-tasks-container li {
+  margin-top: 16px;
+  margin-left: 12px;
+  width: 100%;
+  color: #363636;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.personal-tasks-container h2 {
+    margin-bottom: 16px;
+    font-weight: 200;
+}
+
+.personal-tasks-container p {
+  font-size: 11px;
+  line-height: 28px;
+  margin-bottom: 2px;
+  margin-top: -8px;
+  margin-right: 12px;
+  color: #999;
+}
+
+.card-right-info {
+ margin: 10px 16px 4px 0px;
+
+}
+
+
+.personal-tasks-container a {
+  text-decoration: none !important;
+}
+.task-name-deadline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+
+}
+
+@media screen and (max-width: 500px) {
+  .personal-tasks-container {
+    // flex: 0 45%;
+    // display: flex;
+    padding: 12px 62px 12px 0px;
+    color: #565656;
+      h2 {
+        font-size: 24px;
+        margin-left: 0px;
+      }
+      a {
+        text-decoration: none;
+        color: gray;
+        font-weight: lighter;
+        font-size: 12px
+      }
+      margin-left: 62px;
+  }
+  .trip-index-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+  min-height: 100vh;
+  padding-bottom: 100px;
+  flex-direction: column;
+  }
+  .personal-tasks-container h2 {
+    margin-bottom: 16px;
+    font-weight: 200;
+    margin-right: 0;
+  }
+
+.task-name-deadline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+
+}
+
+.deadline-list {
+  margin-right: 12px;
+  color: black !important;
+}
+
+.task-box-trip{
+  width: 100%;
+}
+}

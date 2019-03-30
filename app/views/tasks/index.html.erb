@@ -1,0 +1,462 @@
+<!-- navbar -->
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to trips_path, class: "navbar-brand" do %>
+<i class="fa fa-map-marked-alt"></i>
+  <% end %>
+
+
+  <h2 class="navbar-dash-title-task"> <%= @trip.name %> </h2>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+      <li class="dash-link">
+        <%= link_to "Dashboard", trips_path, :method => "get" %>
+      </li>
+      <li class="nav-item dropdown">
+      <% if current_user.facebook_picture_url %>
+        <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
+        <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+      <% else %>
+        <%= cl_image_tag current_user.photo, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- add tasks and people -->
+<div class="add-bar">
+  <button onclick="document.getElementById('id02').style.display='block'" class="btn-flat-task">+ Add task</button>
+  <button onclick="document.getElementById('id01').style.display='block'" class="btn-flat-people">+ Add people</button>
+</div>
+
+<!-- TASK MANAGER -->
+
+
+<div class="tasks-manager">
+      <%# @trip.participants.each do |participant| %>
+      <% @trip.uniq_particpants.each do |participant| %>
+        <% if participant.status != "pending" %>
+    <!--      Task container             -->
+  <div class="task" data-user-id="<%= participant.user_id %>">
+    <!--        Task head                -->
+    <div class="task-head">
+      <h2><%= participant.user.name%></h2>
+      <h5><%= cl_image_tag participant.user.photo, crop: :fill, class: "avatar-tiny" if !participant.user.nil? %></h5>
+        <% else %>
+        <% next %>
+        <% end %>
+    </div>
+    <!--         task body               -->
+    <% @incomplete.each do |task| %>
+    <div class="task-body" data-task-id="<%= task.id %>">
+      <!--      task card                -->
+
+          <% if task.user_id == participant.user_id && task.name %>
+      <div class="card-task">
+
+        <div class="card-task-infos">
+          <div class="task-box">
+
+            <h2 class="task-title"><%= task.name %></h2>
+
+            <p class="task-description"><%= task.description %></p>
+          <div class="icon dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bars ">
+              <div class="dropdown-menu dropdown-menu-left ">
+
+                <a class="dropdown-item" id="editButton" onclick="document.querySelector('.edit-modal').style.display='block'" style="width:auto;">Edit</a>
+                <a class="dropdown-item" href="#">Attachments</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" id="deleteButton">Delete</a>
+              </div>
+            </i>
+          </div>
+          <!--  -->
+
+          <!--  -->
+          </div>
+        </div>
+      </div>
+            <% end %>
+    </div>
+    <% end %>
+  </div>
+      <% end %>
+      <%# end %>
+      <!--  -->
+
+
+      <!--  -->
+      <div class="task">
+    <!--        Task head                -->
+    <div class="task-head completed-task-head">
+      <h2  >Completed Tasks</h2>
+    </div>
+    <!--         task body               -->
+
+    <% if @complete.any? %>
+
+    <div class="task-body">
+      <!--      task card                -->
+
+      <div class="card-task">
+
+        <div class="card-task-infos">
+          <div class="task-box">
+        <% @complete.each do |task| %>
+          <div class="task-content">
+
+            <h2 class="task-title"><%= task.name %></h2>
+
+            <p class="task-description"><%= task.description %></p>
+          </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+
+
+</div>
+
+
+<!--           <%# @incomplete.each do |task| %>
+          <%# if participant.user %>
+          <%# if task.user_id == participant.user_id %>
+          <div class="draggable-tasks">
+            <li>
+              <h6> <%#= task.name %> </h6>
+              <p> <%#= task.description %> </p>
+                <%#= simple_form_for([@trip, task], method: :patch) do |f| %>
+                  <%#= f.input :done_at, as: :hidden %>
+                  <%#= f.submit "Mark as Completed", class: "btn btn-primary" %>
+
+                <%#= simple_form_for([@trip, task], method: :delete) do |f| %>
+                  <%#= f.submit "Delete task", class: "btn btn-primary" %>
+                <%# end %>
+                <%# end %>
+                <%# end%>
+
+                <%# @trip.participants.each do |participant| %>
+                <%# if !participant.user.nil? %>
+                  <%#= simple_form_for([@trip, task], method: :patch) do |f| %>
+                  <%#= f.hidden_field :participant , value: participant.user.id %>
+                  <%#= f.submit "to #{participant.user.name}", class: "btn btn-primary" %></i>
+                <%# end %>
+                <%# end %>
+                <%# end %>
+                <%# end %>
+                <%#end %>
+                <%# end %>
+
+<div> -->
+
+    <!-- CARDS  -->
+
+   <!--  <div class="participants"> -->
+      <%# @trip.participants.each do |participant| %>
+      <!-- <ul> -->
+      <!--   <div class="droppable-tasks">
+          <li>
+            <#% if !participant.user.nil? %>
+            <h4> <%#= participant.user.name%> </h4>
+            <#% else %>
+            <%#= "#{participant.email}, status: #{participant.status}" %>
+            <#% end %>
+            <ul>  -->
+
+
+
+          <!--     <#% @incomplete.each do |task| %>
+              <#% if task.user_id == participant.user_id %>
+              <div class="draggable-tasks">
+                <li>
+                  <h6> <%#= task.name %> </h6>
+                  <p> <%#= task.description %> </p>
+                    <%#= simple_form_for([@trip, task], method: :patch) do |f| %>
+                      <%#= f.input :done_at, as: :hidden %>
+                      <%#= f.submit "Mark as Completed", class: "btn btn-primary" %>
+                    <#% end %>
+                    <#% @trip.participants.each do |participant| %>
+                      <%#= simple_form_for([@trip, task], method: :patch) do |f| %>
+                      <#%= f.hidden_field :participant , value: participant.user.id %>
+                      <#%= f.submit "to #{participant.user.name}", class: "btn btn-primary" %></i>
+                    <#% end %>
+                    <#% end %>
+
+ -->
+
+
+
+    <!--
+                  <button type="button"> <%#= link_to "Mark as Complete", trip_task_path(@trip, task), {:action => "update"}%></button>
+     -->              <%## if task.attachments.present? %>
+                  <%# task.attachments.each do |attach| %>
+              <!--     <p>
+                    Attachment: <%#= link_to attach.name, attach.photo_url, target: "_blank" %>
+                  </p>
+                  <%# end %>
+                  <%# else %>
+                  <%#= button_to "Attach file", class: "btn btn-flat" %>
+                  <%# end %>
+                </li>
+              </div>
+              <%# end %>
+              <%# end %>
+            </ul>
+          </li>
+        </div>
+      </ul>
+      <%# end %>
+    </div>
+ -->
+
+
+
+
+ <!-- NEW PART TO FIX GUYS -->
+<!--   <div class="participants">
+  <%# @trip.participants.each do |participant| %>
+  <ul>
+    <div class="droppable-tasks">
+      <li>
+        <%# if !participant.user.nil? %>
+        <h4> <%#= participant.user.name%> </h4>
+        <%# else %>
+        <%#= "#{participant.email}, status: #{participant.status}" %>
+        <%# end %>
+        <ul>
+
+
+
+          <%# @incomplete.each do |task| %>
+          <%# if task.user_id == participant.user_id %>
+          <div class="draggable-tasks">
+            <li>
+              <h6> <%#= task.name %> </h6>
+              <p> <%#= task.description %> </p>
+              <%#= simple_form_for([@trip, task], method: :patch) do |f| %>
+              <%#= f.input :done_at, as: :hidden %>
+              <%#= f.submit "Mark as Completed", class: "btn btn-primary" %>
+
+              <%# end %>
+              <%#= simple_form_for([@trip, task], method: :delete) do |fd| %>
+              <%#= fd.submit "Delete task", class: "btn btn-primary" %>
+              <%# end %>
+
+              <div id="<%#= task.id %>" class="modal">
+                <div class="modal-content">
+
+                  <%#= simple_form_for [@trip, task] do |fa| %>
+                  <%#= fa.input :name %>
+
+                  <%#= fa.input :description, as: :text %>
+                  <%#= fa.input :due_date, as: :string, required: true, input_html: {class: "datepicker"} %>
+                  <div class="clearfix" style="display: flex">
+                    <%#= fa.submit "Save task", class: "btn btn-primary" %>
+                    <button type="button" onclick="document.getElementById('<%#= task.id %>').style.display='none'" class="cancelbtn">Cancel</button>
+
+                    <%# end %>
+
+                  </div>
+                </div>
+
+
+
+
+              </div>
+
+
+              <button onclick="document.getElementById('<%#= task.id %>').style.display='block'" style="width:auto;">Edit task</button>
+
+
+              <%# @trip.participants.each do |participant| %>
+              <%# if !participant.user.nil? %>
+              <%#= simple_form_for([@trip, task], method: :patch) do |f| %>
+              <%#= f.hidden_field :participant , value: participant.user.id %>
+              <%#= f.submit "to #{participant.user.name}", class: "btn btn-primary" %></i>
+              <%# end %>
+              <%# end %>
+              <%# end %>
+
+
+
+
+
+
+              <button type="button"> <%#= link_to "Mark as Complete", trip_task_path(@trip, task), {:action => "update"}%></button>
+                         <%# if task.attachments.present? %>
+            <#% task.attachments.each do |attach| %>
+            <p>
+              Attachment: <%#= link_to attach.name, attach.attachment_url, target: "_blank" %>
+            </p>
+            <#% end %>
+            <#% else %>
+            <#%= button_to "Attach file", class: "btn btn-flat" %>
+            <#% end %>
+          </li>
+        </div>
+        <#% end %>
+        <#% end %>
+      </ul>
+    </li>
+  </div>
+</ul>
+<#% end %>
+</div>
+
+<div id="id03" class="modal">
+    <div class="modal-content">
+
+      <%#= simple_form_for [@trip, @task] do |f| %>
+      <%#= f.input :name %>
+#
+      <%#= f.input :description, as: :text %>
+      <%#= f.input :due_date, as: :datetime, required: true, input_html: {class: "datepicker"} %>
+      <div class="clearfix" style="display: flex">
+        <%#= f.submit "Save task", class: "btn btn-primary" %>
+        <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+
+        <%#end %>
+
+
+      </div>
+    </div>
+
+      --completed--
+      <div class="completed-tasks">
+    <h3>Completed Tasks</h3>
+    <ul>
+      <li>
+        <%# @complete.each do |task| %>
+        <div class="draggable-cards">
+          <li>
+            <h6> <%#= task.name %> </h6>
+            <p> <%#= task.description %> </p>
+
+            <%# if task.attachments.present? %>
+            <%# task.attachments.each do |attach| %>
+            <p>
+              Attachment: <%#= link_to attach.name, attach.attachment_url, target: "_blank" %>
+            </p>
+            <%# end %>
+            <%# else %>
+            <%#= button_to "Attach file", class: "btn btn-flat" %>
+            <%# end %>
+          </li>
+        </div>
+        <%# end %>
+
+      </li>
+    </ul>
+  </div>
+
+
+  </div>
+
+   END OF PART TO FIX -->
+
+<!-- MODAL BOX -->
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="<%= trip_participants_path %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="modal-container">
+      <h1>Invite friends to your trip</h1>
+
+      <label class="form-control-label" id="label-ppl" for="email"><b>Email</b></label>
+      <input class="form-control" id="email-ppl" type="text" name="email" required>
+
+      <div class="clearfix" style="display: flex">
+        <button type="submit" class="btn-flat-task-modal">Send invitation</button>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--  -->
+<div id="id02" class="modal">
+    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <div class="modal-content">
+  <!--  -->
+  <%= simple_form_for [@trip, @task] do |f| %>
+  <h1>Add your tasks</h1>
+    <%= f.input :name, input_html: {class: "form-control"} %>
+
+
+    <%= f.input :description, as: :text, input_html: {class: "form-control"} %>
+    <%= f.input :due_date, as: :string, required: true, input_html: {class: "datepicker"} %>
+    <div class="clearfix" style="display: flex">
+    <%= f.submit "Save task", class: "btn-flat-task-modal" %>
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+
+    <% end %>
+    <!--  -->
+
+  </div>
+  </div>
+
+
+<%# end %>
+
+
+</div>
+
+
+
+<!--  -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content-friends" action="<%= trip_participants_path %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="modal-container">
+      <h1>Invite friends to your trip</h1>
+
+      <label class="form-control-label" id="label-ppl" for="email"><b>Email</b></label>
+      <input class="form-control" id="email-ppl" type="text" name="email" required>
+
+      <div class="clearfix" style="display: flex">
+        <button type="submit" class="btn-flat-task-modal">Send invitation</button>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--  -->
+
+
+
+
+<!--  -->
+
+
+
+
+
+
+<script>
+
+
+
+</script>
+
+<%# end %>

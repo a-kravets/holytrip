@@ -1,0 +1,201 @@
+
+<!-- navbar -->
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to root_path, class: "navbar-brand" do %>
+<i class="fa fa-map-marked-alt"></i>
+  <% end %>
+
+
+  <h2 class="navbar-dash-title">Create Your Trip</h2>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+      <li class="dash-link">
+        <%= link_to "Back to dashboard", trips_path, :method => "get" %>
+      </li>
+      <li class="nav-item dropdown">
+      <% if current_user.facebook_picture_url %>
+        <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
+        <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+      <% else %>
+        <%= cl_image_tag current_user.photo, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="main-wrapper">
+
+
+<div class="container main-block">
+  <div class="row">
+<!--    <div class="col-xs-12 col-sm-6 col-md-4"> -->
+
+
+<div class="create-trip-first col-md-4">
+
+  <%= simple_form_for @trip do |f| %>
+    <%= f.input :name, required: true, autofocus: true, input_html: { class: "form-control form-control-lg", placeholder: "Name your trip" } %>
+    <%= f.input :destination, input_html: {id: "input-map", type: "serch", name: "trip[destination]", class: "form-control form-control-lg", placeholder: "Where are we going?"} %>
+    <%= f.input :start_date, as: :string, required: true, input_html: {class: "datepicker form-control-lg", placeholder: "Pick start date"} %>
+    <%= f.input :end_date, as: :string, required: true, input_html: {class: "datepicker form-control-lg", placeholder: "Pick end date"} %>
+
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
+
+</div>
+
+<div class="create-trip-second col-md-4">
+
+
+
+
+
+
+<!-- MAP DIV -->
+
+<p>Check out the map</p>
+
+<div id="map-example-container"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.16.1"></script>
+<script>
+
+  (function() {
+  var placesAutocomplete = places({
+    appId: '<%= ENV["ALGOLIA_SEARCH_APP_ID"] %>',
+    apiKey: '<%= ENV["ALGOLIA_SEARCH_API_KEY"] %>',
+    container: document.querySelector('#input-map')
+  });
+
+  var map = L.map('map-example-container', {
+    scrollWheelZoom: false,
+    zoomControl: false
+  });
+
+  var osmLayer = new L.TileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      minZoom: 1,
+      maxZoom: 13,
+      attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }
+  );
+
+  var markers = [];
+
+  map.setView(new L.LatLng(0, 0), 1);
+  map.addLayer(osmLayer);
+
+  placesAutocomplete.on('suggestions', handleOnSuggestions);
+  placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
+  placesAutocomplete.on('change', handleOnChange);
+  placesAutocomplete.on('clear', handleOnClear);
+
+  function handleOnSuggestions(e) {
+    markers.forEach(removeMarker);
+    markers = [];
+
+    if (e.suggestions.length === 0) {
+      map.setView(new L.LatLng(0, 0), 1);
+      return;
+    }
+
+    e.suggestions.forEach(addMarker);
+    findBestZoom();
+  }
+
+  function handleOnChange(e) {
+    markers
+      .forEach(function(marker, markerIndex) {
+        if (markerIndex === e.suggestionIndex) {
+          markers = [marker];
+          marker.setOpacity(1);
+          findBestZoom();
+        } else {
+          removeMarker(marker);
+        }
+      });
+  }
+
+  function handleOnClear() {
+    map.setView(new L.LatLng(0, 0), 1);
+    markers.forEach(removeMarker);
+  }
+
+  function handleOnCursorchanged(e) {
+    markers
+      .forEach(function(marker, markerIndex) {
+        if (markerIndex === e.suggestionIndex) {
+          marker.setOpacity(1);
+          marker.setZIndexOffset(1000);
+        } else {
+          marker.setZIndexOffset(0);
+          marker.setOpacity(0.5);
+        }
+      });
+  }
+
+  function addMarker(suggestion) {
+    var marker = L.marker(suggestion.latlng, {opacity: .4});
+    marker.addTo(map);
+    markers.push(marker);
+  }
+
+  function removeMarker(marker) {
+    map.removeLayer(marker);
+  }
+
+  function findBestZoom() {
+    var featureGroup = L.featureGroup(markers);
+    map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
+  }
+})();
+</script>
+<!-- END OF MAP DIV -->
+
+</div>
+
+<div class="create-trip-third col-md-4">
+
+  <p>Invite your friends <!-- <i class="material-icons">add_circle_outline
+</i> --></p>
+  <%# 10.times do |i| %>
+  <ul id="invite-friends">
+    <li><%= text_field_tag 'emails[]', nil, class: 'special_input', placeholder: "Enter an email of your friend" %></li>
+    <li><%= text_field_tag 'emails[]', nil, class: 'special_input', placeholder: "Enter an email of your friend" %></li>
+    <li><%= text_field_tag 'emails[]', nil, class: 'special_input', placeholder: "Enter an email of your friend" %></li>
+    <li><%= text_field_tag 'emails[]', nil, class: 'special_input', placeholder: "Enter an email of your friend" %></li>
+    <li><%= text_field_tag 'emails[]', nil, class: 'special_input', placeholder: "Enter an email of your friend" %></li>
+  </ul>
+  <%# end %>
+  <%= f.submit "Create trip", class: "btn btn-create btn-lg" %>
+  <% end %>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

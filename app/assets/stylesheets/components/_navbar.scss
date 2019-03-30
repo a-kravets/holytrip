@@ -1,0 +1,106 @@
+
+.navbar {
+  background-color: white !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+}
+
+.navbar-lewagon {
+  justify-content: space-between !important;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 48px;
+  color: 727272;
+  margin-left: 16px;
+}
+.navbar-nav {
+  float: right;
+}
+
+.navbar-brand {
+  margin-left: 16px;
+  color: #565656 !important;
+}
+
+.fa {
+  font-size: 28px;
+}
+
+.navbar h2 {
+  font-weight: lighter;
+  margin-left: 128px;
+  margin-top: 8px;
+
+}
+
+.navbar-dash-title-task {
+  margin-left: 80px !important;
+}
+
+.dash-link {
+  margin-top: 9px;
+  margin-right: 28px;
+  font-weight: lighter;
+}
+
+a {
+  text-decoration: none !important;
+  color: #565656 !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: #565656 !important;
+}
+
+.navbar {
+  height: 88px;
+  background-color: #f4f4f4;
+}
+
+.navbar img {
+  margin-right: 16px;
+}
+
+
+.button-create {
+  margin-top: 1px;
+  margin-right: 32px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 4px;
+
+}
+
+
+.btn-flat {
+  color: white !important;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color: #3093EF !important;
+  transition: background 0.3s ease;
+  border: none !important;
+}
+
+.btn-flat-create {
+  color: white !important;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background-color: #00D1AC !important;
+  transition: background 0.3s ease;
+  border: none !important;
+}
+
+
+@media screen and (max-width: 500px) {
+
+.navbar-dash-title {
+  margin-left: 15px !important;
+  color: #565656 !important;
+
+  }
+}
